@@ -13,24 +13,50 @@ Readonly::Scalar my $EXPL =>
 q{See https://blog.sonarsource.com/cognitive-complexity-because-testability-understandability/};
 
 sub supported_parameters {
-    return ();
+	return ();
 }
 
 sub default_severity {
-    return $SEVERITY_MEDIUM;
+	return $SEVERITY_MEDIUM;
 }
 
 sub default_themes {
-    return qw( complexity maintenance );
+	return qw( complexity maintenance );
 }
 
-sub applies_to { 
-    return 'PPI::Statement::Sub';
+sub applies_to {
+	return 'PPI::Statement::Sub';
 }
 
 sub violates {
-    my ( $self, $elem, undef ) = @_;
-    return;
+	my ( $self, $elem, undef ) = @_;
+
+	return;
+}
+
+package Complexity;
+
+use overload '""' => \&toString;
+
+sub new {
+	my $class = shift;
+	my ( $nesting, $complexity ) = @_;
+	return bless { 'nesting' => $nesting, 'complexity' => $complexity }, $class;
+}
+
+sub increment_nesting {
+	my $self = shift;
+	return Complexity->new( $self->{'nesting'} + 1, $self->{'complexity'} );
+}
+
+sub increment_complexity {
+	my $self = shift;
+	return Complexity->new( $self->{'nesting'}, $self->{'complexity'} + 1 );
+}
+
+sub toString {
+	my $self = shift;
+	return "" + $self->{'complexity'};
 }
 
 1;
