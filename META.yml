@@ -4,6 +4,7 @@ author:
   - 'Oliver Trosien <mailacc.67890+cpan@gmail.com>'
 build_requires:
   ExtUtils::MakeMaker: 6.36
+  Perl::Critic::TestUtils: 1.082
   Test::More: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.36
@@ -20,5 +21,7 @@ no_index:
     - inc
     - t
 requires:
-  Perl::Critic: 0
+  PPI::Document: 0
+  Perl::Critic::Policy: 1.082
+  Perl::Critic::Utils: 1.082
 version: '0.1'
