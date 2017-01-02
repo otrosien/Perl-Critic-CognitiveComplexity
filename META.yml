@@ -1,7 +1,7 @@
 ---
 abstract: 'Minimize cognitive complexity by factoring code into smaller subroutines.'
 author:
-  - 'Oliver Trosien <mailacc.67890+cpan@gmail.com>'
+  - 'Oliver Trosien <cpan@pocket-design.de>'
 build_requires:
   ExtUtils::MakeMaker: 6.36
   Perl::Critic::TestUtils: 1.082

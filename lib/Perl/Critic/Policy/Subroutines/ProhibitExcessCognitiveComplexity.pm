@@ -95,6 +95,6 @@ Perl::Critic::Policy::Subroutines::ProhibitExcessCognitiveComplexity - Minimize 
 
 =head1 AUTHOR
 
-Oliver Trosien <mailacc.67890+cpan@gmail.com>
+Oliver Trosien <cpan@pocket-design.de>
 
 =cut
