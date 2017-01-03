@@ -3,17 +3,21 @@
 
 Perl::Critic::CognitiveComplexity - Cognitive Complexity, Because Testability != Understandability
 
-# SYNOPSIS
-
-    use Perl::Critic::CognitiveComplexity;
-
 # DESCRIPTION
 
 Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity is a rule that checks the
 cognitive complexity score of your subroutines. It is based on a new scoring algorithm introduced by
 SonarSource. See https://blog.sonarsource.com/cognitive-complexity-because-testability-understandability/
 
-To use it, enable CognitiveComplexity::ProhibitExcessCognitiveComplexity in your .perlcriticrc
+## Complexity
+
+- [CognitiveComplexity::ProhibitExcessCognitiveComplexity](https://metacpan.org/pod/Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity)
+
+    Avoid excess cognitive complexity in your subroutines.
+
+# SEE ALSO
+
+[Perl::Critic](https://metacpan.org/pod/Perl::Critic)
 
 # LICENSE
 
@@ -25,3 +29,15 @@ it under the same terms as Perl itself.
 # AUTHOR
 
 Oliver Trosien <cpan@pocket-design.de>
+
+# POD ERRORS
+
+Hey! **The above document had some coding errors, which are explained below:**
+
+- Around line 27:
+
+    '=item' outside of any '=over'
+
+- Around line 31:
+
+    You forgot a '=back' before '=head1'
