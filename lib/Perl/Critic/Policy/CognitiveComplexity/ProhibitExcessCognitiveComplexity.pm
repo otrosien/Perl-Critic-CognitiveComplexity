@@ -1,4 +1,4 @@
-package Perl::Critic::Policy::Subroutines::ProhibitExcessCognitiveComplexity;
+package Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity;
 use strict;
 use warnings;
 
@@ -82,19 +82,3 @@ sub nested_complexity {
 }
 
 1;
-
-__END__
-
-#-----------------------------------------------------------------------------
-
-=pod
-
-=head1 NAME
-
-Perl::Critic::Policy::Subroutines::ProhibitExcessCognitiveComplexity - Minimize cognitive complexity by factoring code into smaller subroutines.
-
-=head1 AUTHOR
-
-Oliver Trosien <cpan@pocket-design.de>
-
-=cut
