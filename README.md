@@ -9,11 +9,19 @@ Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity is 
 cognitive complexity score of your subroutines. It is based on a new scoring algorithm introduced by
 SonarSource. See https://blog.sonarsource.com/cognitive-complexity-because-testability-understandability/
 
-## Complexity
+## Rules
 
-- [CognitiveComplexity::ProhibitExcessCognitiveComplexity](https://metacpan.org/pod/Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity)
+- [CognitiveComplexity::ProhibitExcessCognitiveComplexity](https://metacpan.org/pod/Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity) - Avoid code that is nested, and thus difficult to grasp.
 
-    Avoid excess cognitive complexity in your subroutines.
+## Configuration
+
+The default complexity score before code starts to be reported with medium severity, is 10. This can be changed by changing the `warn_level` parameter.
+By default all subroutines with complexity level of more than 0 are reported in lowest severity level. This allows third-party tools to pick up these 
+values as code metrics.
+
+    [Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity]
+    warn_level = 10
+    info_level = 1
 
 # SEE ALSO
 
@@ -38,6 +46,6 @@ Hey! **The above document had some coding errors, which are explained below:**
 
     '=item' outside of any '=over'
 
-- Around line 31:
+- Around line 29:
 
-    You forgot a '=back' before '=head1'
+    You forgot a '=back' before '=head2'

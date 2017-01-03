@@ -20,6 +20,7 @@ cover_db/
 /_build_params
 MYMETA.*
 .*
+.project
 !LICENSE
 !.gitignore
 !.travis.yml

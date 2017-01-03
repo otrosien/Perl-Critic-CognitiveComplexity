@@ -5,16 +5,7 @@ use Perl::Critic::Utils qw{ :severities };
 
 my $policy = 'Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity';
 
-### simple check
-
 my $code = <<'END_CODE';
-sub a { }
-END_CODE
-my $violation_count = pcritique( $policy, \$code );
-is( $violation_count, 0, 'No violation' );
-
-### example 1
-$code = <<'END_CODE';
 use experimental qw(switch);
                                 # Cyclomatic Complexity    Cognitive Complexity
 
@@ -35,31 +26,6 @@ is(scalar @violations, 1, 'Found 1 violation');
 
 my $violation = $violations[0];
 is($violation->severity(), $SEVERITY_LOWEST, 'getWords: Violation is info-level');
-is($violation->description(), 'Subroutine "getWords" with high complexity score (1)', 'getWords: Violation description');
-
-### example 2
-$code = <<'END_CODE';
-
-sub sumOfPrimes {
-    my ($max) = @_;
-    my $total = 0;
-    OUT: for (my $i = 1; $i <= $max; ++$i) {
-        for (my $j = 2; $j < $i; ++$j) {
-            if ($i % $j == 0) {
-                 last OUT;
-            }
-        }
-        $total += $i;
-    }
-    return $total;
-}
-
-END_CODE
-my @violations = pcritique_with_violations( $policy, \$code );
-is(scalar @violations, 1, 'Found 1 violation');
-
-my $violation = $violations[0];
-is($violation->severity(), $SEVERITY_LOWEST, 'sumOfPrimes: Violation is info-level');
-is($violation->description(), 'Subroutine "sumOfPrimes" with high complexity score (7)', 'sumOfPrimes: Violation description');
+is($violation->description(), "Subroutine 'getWords' with complexity score of '1'", 'getWords: Violation description');
 
 done_testing();

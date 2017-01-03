@@ -8,8 +8,7 @@ use base 'Perl::Critic::Policy';
 
 our $VERSION = '0.1';
 
-Readonly::Scalar my $DESC => q{Avoid excessive cognitive complexity};
-Readonly::Scalar my $EXPL => q{See https://blog.sonarsource.com/cognitive-complexity-because-testability-understandability/};
+Readonly::Scalar my $EXPL => q{Avoid code that is nested, and thus difficult to grasp.};
 
 sub supported_parameters {
     return ( {
@@ -19,6 +18,13 @@ sub supported_parameters {
             behavior        => 'integer',
             integer_minimum => 1,
         },
+        {
+            name            => 'info_level',
+            description     => 'The complexity score allowed before informational reporting starts.',
+            default_string  => '1',
+            behavior        => 'integer',
+            integer_minimum => 1,
+        }
     );
 }
 
@@ -37,24 +43,24 @@ sub applies_to {
 sub violates {
     my ( $self, $elem, undef ) = @_;
 
-    my @viols = ();
+    # only report complexity for named subs.
+    my $name = $elem->name() or return;
 
-    # minimum complexity is 0
+    # start with complexity of 0
     my $score = $self->nested_complexity( $elem->find_first('PPI::Structure::Block'), 0);
 
-    if ( $score > 0 ) {
-        my $desc;
-        if ( my $name = $elem->name() ) {
-            $desc = qq<Subroutine "$name" with high complexity score ($score)>;
-        }
-        else {
-            $desc = qq<Anonymous subroutine with high complexity score ($score)>;
-        }
+    return if($score < $self->{'_info_level'});
+    return ($self->new_violation($elem, $score));
+}
 
-        push @viols, Perl::Critic::Violation->new( $desc, $EXPL, $elem, ( $score >= $self->{'_warn_level'} ? $self->get_severity() : $SEVERITY_LOWEST ) );
-    }
+sub new_violation {
+    my $self = shift;
+    my ($elem, $score) = @_;
+    my $name = $elem->name();
+    my $desc = qq<Subroutine '$name' with complexity score of '$score'>;
 
-    return @viols;
+    return Perl::Critic::Violation->new( $desc, $EXPL, $elem,
+        ($score >= $self->{'_warn_level'} ? $self->get_severity() : $SEVERITY_LOWEST ));
 }
 
 sub nested_complexity {
@@ -72,8 +78,8 @@ sub nested_complexity {
         {
             $complexity += $nesting + 1; # aniticipate nesting increment
         }
-        # return does not seem to count in terms of complexity.
-        elsif ( $child->isa('PPI::Statement::Break') && ! scalar $child->find( sub { $_[1]->content eq 'return' }) ) {
+        # 'return' is a break-statement, but does not count in terms of cognitive complexity.
+        elsif ( $child->isa('PPI::Statement::Break') && ! $self->is_return_statement($child)) {
             $complexity++;
         }
         $complexity += $self->nested_complexity( $child, $nesting + $self->nesting_increase($child) );
@@ -81,12 +87,20 @@ sub nested_complexity {
     return $complexity;
 }
 
+sub is_return_statement {
+    my $self = shift;
+    my ($child) = @_;
+    scalar $child->find( sub { $_[1]->content eq 'return' });
+}
+
 sub nesting_increase {
     my $self = shift;
     my ($child) = @_;
 
+    # if/when/for...
     return 1 if ($child->isa('PPI::Statement::Compound'));
-#    return 1 if ($child->isa('PPI::Statement::Sub'));
+    # anonymous sub
+    return 1 if ($child->isa('PPI::Statement') && $child->find( sub { $_[1]->content eq 'sub' }));
 
     return 0;
 }

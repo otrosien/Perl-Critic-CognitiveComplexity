@@ -22,11 +22,19 @@ Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity is 
 cognitive complexity score of your subroutines. It is based on a new scoring algorithm introduced by
 SonarSource. See https://blog.sonarsource.com/cognitive-complexity-because-testability-understandability/
 
-=head2 Complexity
+=head2 Rules
 
-=item L<CognitiveComplexity::ProhibitExcessCognitiveComplexity|Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity>
+=item L<CognitiveComplexity::ProhibitExcessCognitiveComplexity|Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity> - Avoid code that is nested, and thus difficult to grasp.
 
-Avoid excess cognitive complexity in your subroutines.
+=head2 Configuration
+
+The default complexity score before code starts to be reported with medium severity, is 10. This can be changed by changing the C<warn_level> parameter.
+By default all subroutines with complexity level of more than 0 are reported in lowest severity level. This allows third-party tools to pick up these 
+values as code metrics.
+
+  [Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity]
+  warn_level = 10
+  info_level = 1
 
 =head1 SEE ALSO
 
