@@ -28,7 +28,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build::Tiny" : "0.035"
+            "Module::Build" : "0.4005"
          }
       },
       "develop" : {
@@ -48,6 +48,8 @@
       },
       "test" : {
          "requires" : {
+            "Devel::Cover" : "1.23",
+            "Devel::Cover::Report::Clover" : "1.01",
             "File::Spec" : "3.56",
             "Test::More" : "0.98",
             "Test::Perl::Critic" : "1.03"

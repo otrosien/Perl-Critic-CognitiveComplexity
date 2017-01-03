@@ -1,3 +1,7 @@
+addons:
+  sonarqube:
+    token:
+      secure: "dQ3Pg7N+1IaAj5GtNI6gKI6BIp+PHs6ScWmSDgqQwNqX2yKqP4tQ/IDbuWXTFuTQBZW/3RaWK3RJKf/j25aAg9xJQdw3JJi+Jwy9Q081dI2xnvoSPH4UuKiwAp4osJQgZJzxF3hCLV8PhpV8cTYlQg2SScpJXjrBZlXW+43aKYydQYNFhUV/kFl0wcNuj3xS6VgFlrHlYlyGRNQLD0GjxWPrB3S2Kg7/HywEx05mMi68/3Qb2qgzRXhSlhR+w11eiTWZJyiMde7AQUOBHE2Q8awURCvsDOwlFR5Wh0CCMAyBURNf7k/Xmc1HAqFMV/zfAI/T/pSRMjozh/mxdASMTOZwf6qVUg0aXRr5FJstgHVVtT8m/6tTNyFFZ+KhAKPFDQbRJiTicjgSSgpYN+55pBLWmBMr5Tbf0MAvdoaDMVKOtx5FJHVYw6vX28CGl2Wu1RJX3zl8+I9+0euxtngHdNAsmwQ76lT/LAGkD3mL06XAGznWZ55OQgA58xaVR2qUK7MU5l1wzt/K3jF5TuMAouJkpMrPWcOAPOapUAmw+R2i2HfwKI29DM8oYC2HCDiK2HPDA+m+yz9Fp5NkP01iRbW2KfsdWmY/eVYsXpTU/utKECMGrCXqSDNVKbdsFbo2twzXnirrEshEOZ/N/rdBWfYK+3aIJ04fjZvaUQNhsIc="
 language: perl
 perl:
   - "5.24"
@@ -8,4 +12,6 @@ perl:
   - "5.14"
   - "5.12"
   - "5.10"
-
+script:
+  - perl Build.PL && ./Build test
+  - sonar-scanner -Dsonar.host.url=http://sonarqube.racodond.com/
