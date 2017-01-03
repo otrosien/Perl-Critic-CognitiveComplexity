@@ -49,7 +49,8 @@ sub violates {
     my $name = $elem->name() or return;
 
     # start with complexity of 0
-    my $score = $self->nested_complexity( $elem->find_first('PPI::Structure::Block'), 0);
+    my $block = $elem->find_first('PPI::Structure::Block');
+    my $score = $self->nested_complexity($block , 0);
 
     return if($score < $self->{'_info_level'});
     return ($self->new_violation($elem, $score));
@@ -75,10 +76,17 @@ sub nested_complexity {
 
     for my $child ( $elem->schildren() ) {
         #my $inc = 0;
-        if (   $child->isa('PPI::Statement::Given')
-            || $child->isa('PPI::Statement::Compound'))
+        if (   $child->isa('PPI::Structure::Given')
+            || $child->isa('PPI::Structure::Condition')
+            || $child->isa('PPI::Structure::For')
+            )
         {
-            $complexity += $nesting + 1; # aniticipate nesting increment
+            if($self->nesting_increase($child->parent)) {
+                $complexity += $nesting;
+            } else {
+                # missing compound statement / increment on postfix operators
+                $complexity += $nesting + 1;
+            }
         }
         # 'return' is a break-statement, but does not count in terms of cognitive complexity.
         elsif ( $child->isa('PPI::Statement::Break') && ! $self->is_return_statement($child)) {
@@ -101,6 +109,7 @@ sub nesting_increase {
 
     # if/when/for...
     return 1 if ($child->isa('PPI::Statement::Compound'));
+    return 1 if ($child->isa('PPI::Statement::Given'));
     # anonymous sub
     return 1 if ($child->isa('PPI::Statement') && $child->find( sub { $_[1]->content eq 'sub' }));
 
