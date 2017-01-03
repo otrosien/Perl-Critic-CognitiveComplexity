@@ -1,6 +1,0 @@
-Changes
-lib/Perl/Critic/Policy/Subroutines/ProhibitExcessCognitiveComplexity.pm
-Makefile.PL
-MANIFEST
-README.md
-t/compile.t

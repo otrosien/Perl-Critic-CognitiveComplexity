@@ -1,10 +1,9 @@
 use strict;
 use Test::More;
 use Perl::Critic::TestUtils qw( pcritique pcritique_with_violations );
-use Perl::Critic::Policy::Subroutines::ProhibitExcessCognitiveComplexity;
 use Perl::Critic::Utils qw{ :severities };
 
-my $policy = 'Perl::Critic::Policy::Subroutines::ProhibitExcessCognitiveComplexity';
+my $policy = 'Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity';
 
 ### simple check
 
