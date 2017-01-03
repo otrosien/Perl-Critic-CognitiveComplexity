@@ -37,15 +37,3 @@ it under the same terms as Perl itself.
 # AUTHOR
 
 Oliver Trosien <cpan@pocket-design.de>
-
-# POD ERRORS
-
-Hey! **The above document had some coding errors, which are explained below:**
-
-- Around line 27:
-
-    '=item' outside of any '=over'
-
-- Around line 29:
-
-    You forgot a '=back' before '=head2'

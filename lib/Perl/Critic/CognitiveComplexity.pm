@@ -24,7 +24,11 @@ SonarSource. See https://blog.sonarsource.com/cognitive-complexity-because-testa
 
 =head2 Rules
 
+=over 1
+
 =item L<CognitiveComplexity::ProhibitExcessCognitiveComplexity|Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity> - Avoid code that is nested, and thus difficult to grasp.
+
+=back
 
 =head2 Configuration
 
@@ -35,6 +39,8 @@ values as code metrics.
   [Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity]
   warn_level = 10
   info_level = 1
+
+
 
 =head1 SEE ALSO
 
