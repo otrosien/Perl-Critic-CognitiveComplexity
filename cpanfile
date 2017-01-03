@@ -7,5 +7,6 @@ on 'test' => sub {
     requires 'File::Spec', '3.56';
     requires 'Devel::Cover', '1.23';
     requires 'Devel::Cover::Report::Clover', '1.01';
+    requires 'TAP::Harness::Archive', '0.18';
 };
 

@@ -25,3 +25,6 @@ MYMETA.*
 !.gitignore
 !.travis.yml
 !.perltidyrc
+!.perlcriticrc
+perlcritic_report.txt
+testReport.tgz
