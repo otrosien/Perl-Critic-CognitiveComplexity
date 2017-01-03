@@ -27,7 +27,7 @@ values as code metrics.
 
 [Perl::Critic](https://metacpan.org/pod/Perl::Critic)
 
-# LICENSE
+# COPYRIGHT
 
 Copyright (C) 2017 Oliver Trosien.
 

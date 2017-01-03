@@ -48,6 +48,7 @@
       },
       "test" : {
          "requires" : {
+            "File::Spec" : "3.56",
             "Test::More" : "0.98",
             "Test::Perl::Critic" : "1.03"
          }

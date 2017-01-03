@@ -46,7 +46,7 @@ values as code metrics.
 
 L<Perl::Critic>
 
-=head1 LICENSE
+=head1 COPYRIGHT
 
 Copyright (C) 2017 Oliver Trosien.
 

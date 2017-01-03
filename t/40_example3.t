@@ -22,7 +22,7 @@ is(scalar @violations, 1, 'Found 1 violation');
 
 my $violation = $violations[0];
 is($violation->severity(), $SEVERITY_LOWEST, 'myMethod2: Violation is info-level');
-is($violation->description(), "Subroutine 'myMethod2' with complexity score of '2'", 'myMethod2: Violation description');
+is($violation->description(), q{Subroutine 'myMethod2' with complexity score of '2'}, 'myMethod2: Violation description');
 
 
 done_testing();

@@ -16,7 +16,7 @@ my @violations = pcritique_with_violations( $policy, \$code, $perl_critic_config
 is(scalar @violations, 1, 'Found 1 violation');
 my $violation = $violations[0];
 is($violation->severity(), $SEVERITY_MEDIUM, 'a: Violation is warn-level');
-is($violation->description(), "Subroutine 'a' with complexity score of '1'", 'a: Violation description');
+is($violation->description(), q{Subroutine 'a' with complexity score of '1'}, 'a: Violation description');
 
 ### policy info_level configuration check (same code)
 $perl_critic_config = { 'info_level' => 2 };

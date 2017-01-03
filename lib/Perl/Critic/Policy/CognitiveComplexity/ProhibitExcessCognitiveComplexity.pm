@@ -3,13 +3,14 @@ use strict;
 use warnings;
 
 use Readonly;
+use Readonly qw (Scalar);
 use Perl::Critic::Utils qw{ :severities :classification :ppi };
 use Perl::Critic::Violation;
 use base 'Perl::Critic::Policy';
 
 our $VERSION = '0.01';
 
-Readonly::Scalar my $EXPL => q{Avoid code that is nested, and thus difficult to grasp.}; ## no critic(ProhibitCallsToUnexportedSubs)
+Scalar my $EXPL => q{Avoid code that is nested, and thus difficult to grasp.};
 
 sub supported_parameters {
     return ( {
