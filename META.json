@@ -43,7 +43,7 @@
       "runtime" : {
          "requires" : {
             "Perl::Critic" : "1.121",
-            "perl" : "5.008001"
+            "perl" : "5.010"
          }
       },
       "test" : {

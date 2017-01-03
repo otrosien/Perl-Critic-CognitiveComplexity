@@ -67,18 +67,28 @@ sub nested_complexity {
 
     for my $child ( $elem->schildren() ) {
         #my $inc = 0;
-        if (   $child->isa('PPI::Structure::Given')
-            || $child->isa('PPI::Structure::For')
-            || $child->isa('PPI::Structure::Condition') )
+        if (   $child->isa('PPI::Statement::Given')
+            || $child->isa('PPI::Statement::Compound'))
         {
             $complexity += $nesting + 1; # aniticipate nesting increment
         }
+        # return does not seem to count in terms of complexity.
         elsif ( $child->isa('PPI::Statement::Break') && ! scalar $child->find( sub { $_[1]->content eq 'return' }) ) {
             $complexity++;
         }
-        $complexity += $self->nested_complexity( $child, $nesting + $child->isa('PPI::Statement::Compound') ? 1 : 0 );
+        $complexity += $self->nested_complexity( $child, $nesting + $self->nesting_increase($child) );
     }
     return $complexity;
+}
+
+sub nesting_increase {
+    my $self = shift;
+    my ($child) = @_;
+
+    return 1 if ($child->isa('PPI::Statement::Compound'));
+#    return 1 if ($child->isa('PPI::Statement::Sub'));
+
+    return 0;
 }
 
 1;
