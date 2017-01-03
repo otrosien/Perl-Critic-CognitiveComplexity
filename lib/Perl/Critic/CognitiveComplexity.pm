@@ -16,17 +16,21 @@ __END__
 
 Perl::Critic::CognitiveComplexity - Cognitive Complexity, Because Testability != Understandability
 
-=head1 SYNOPSIS
-
-    use Perl::Critic::CognitiveComplexity;
-
 =head1 DESCRIPTION
 
 Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity is a rule that checks the
 cognitive complexity score of your subroutines. It is based on a new scoring algorithm introduced by
 SonarSource. See https://blog.sonarsource.com/cognitive-complexity-because-testability-understandability/
 
-To use it, enable CognitiveComplexity::ProhibitExcessCognitiveComplexity in your .perlcriticrc
+=head2 Complexity
+
+=item L<CognitiveComplexity::ProhibitExcessCognitiveComplexity|Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity>
+
+Avoid excess cognitive complexity in your subroutines.
+
+=head1 SEE ALSO
+
+L<Perl::Critic>
 
 =head1 LICENSE
 
