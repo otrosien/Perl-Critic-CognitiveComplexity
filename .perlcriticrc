@@ -3,12 +3,11 @@
 # Global settings for Perl Critics
 # ============================================================================================
 #
-severity = 3
-theme = bugs || security || core || maintenance || complexity || pbp
+severity = 1
+theme = core
 
-exclude = ProhibitAutomaticExportation$ ProhibitBuiltinHomonyms ProhibitCommaSeparatedStatements ProhibitComplexMappings ProhibitConstantPragma ProhibitExplicitReturnUndef RequireExtendedFormatting ProhibitManyArgs ProhibitSubroutinePrototypes ProhibitUniversalCan$ ProhibitUniversalIsa$ Subroutines::RequireArgUnpacking RequireCarping RequireCheckingReturnValueOfEval RequireEndWithOne RequireExplicitPackage RegularExpressions::RequireExtendedFormatting RequireFilenameMatchesPackage$ RequireFinalReturn RequireLexicalLoopIterators RequireQuotedHeredocTerminator RequireSimpleSortBlock RequireUseWarnings ProhibitCallsToUndeclaredSubs
-
-include = ProhibitAmpersandSigils ProhibitInterpolationOfLiterals ProhibitMagicNumbers ProhibitPerl4PackageNames ProhibitStringySplit ProhibitTrailingWhitespace ProhibitQuotedWordLists ProhibitUnusedVariables RequireCheckedClose RequireCommentForExportedFunctions RequireInterpolationOfMetachars RequireParenthesesLastChar RequireSpacesNotTabs RequireTrailingCommas RequireUpperCaseHeredocTerminator
+exclude = ProhibitAutomaticExportation$ ProhibitBuiltinHomonyms ProhibitCommaSeparatedStatements ProhibitComplexMappings ProhibitConstantPragma ProhibitExplicitReturnUndef RequireExtendedFormatting ProhibitManyArgs ProhibitSubroutinePrototypes ProhibitUniversalCan$ ProhibitUniversalIsa$ Subroutines::RequireArgUnpacking RequireCarping RequireCheckingReturnValueOfEval RequireEndWithOne RequireExplicitPackage RegularExpressions::RequireExtendedFormatting RequireFilenameMatchesPackage$ RequireFinalReturn RequireLexicalLoopIterators RequireQuotedHeredocTerminator RequireSimpleSortBlock RequireUseWarnings ProhibitCallsToUndeclaredSubs ProhibitPostfixControls RequireTidyCode
+include = ProhibitExcessCognitiveComplexity
 
 #
 # ============================================================================================
@@ -33,7 +32,8 @@ allow = $ENV @ENV @ARGV $ARGV
 list_funcs = grep List::Util::first List::MoreUtils::any List::MoreUtils::all List::MoreUtils::none List::MoreUtils::notall List::MoreUtils::true List::MoreUtils::false List::MoreUtils::firstidx List::MoreUtils::first_index List::MoreUtils::lastidx List::MoreUtils::last_index List::MoreUtils::insert_after List::MoreUtils::insert_after_string
 
 [Subroutines::ProhibitExcessComplexity]
-max_mccabe = 35
+max_mccabe = 1
+severity = 1
 
 [ControlStructures::ProhibitCascadingIfElse]
 # Long if-elsif chains are hard to digest, especially if they are longer than a 
