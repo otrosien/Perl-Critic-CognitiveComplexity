@@ -1,4 +1,4 @@
 name = "Perl-Critic-CognitiveComplexity"
 badges = ["travis"]
-module_maker="ModuleBuild"
+module_maker="ModuleBuildTiny"
 authority = "cpan:OTROSIEN"

@@ -26,9 +26,15 @@
       ]
    },
    "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Module::Build::Tiny" : "0.039",
+            "experimental" : "0"
+         }
+      },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.4005"
+            "Module::Build::Tiny" : "0.035"
          }
       },
       "develop" : {
@@ -43,6 +49,7 @@
       "runtime" : {
          "requires" : {
             "Perl::Critic" : "1.121",
+            "Readonly" : "2.00",
             "perl" : "5.010"
          }
       },
