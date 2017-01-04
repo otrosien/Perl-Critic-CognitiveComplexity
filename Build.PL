@@ -38,7 +38,7 @@ my %args = (
     test_requires => {
         'Devel::Cover' => '1.23',
         'Devel::Cover::Report::Clover' => '1.01',
-        'File::Spec' => '3.56',
+        'TAP::Harness::Archive' => '0.18',
         'Test::More' => '0.98',
         'Test::Perl::Critic' => '1.03',
     },
