@@ -31,7 +31,6 @@
             "Devel::Cover" : "1.23",
             "Devel::Cover::Report::Clover" : "1.01",
             "Minilla" : "v3.0.0",
-            "Module::Build::Tiny" : "0.039",
             "TAP::Harness::Archive" : "0.18",
             "experimental" : "0"
          }
