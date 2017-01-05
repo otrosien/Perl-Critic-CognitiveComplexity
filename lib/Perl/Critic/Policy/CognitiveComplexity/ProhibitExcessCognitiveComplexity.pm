@@ -50,11 +50,15 @@ sub violates {
     my $name = $elem->name() or return;
 
     # start with complexity of 0
+    my $score = 0;
     my $block = $elem->find_first('PPI::Structure::Block');
-    my $score = $self->nested_complexity($block , 0);
-    $score += $self->operators($block , 0);
 
+    $score += $self->structure_score($block , 0);
+    $score += $self->operator_score($block);
+
+    # return no violation
     return if($score < $self->{'_info_level'});
+    # return violation
     return ($self->new_violation($elem, $score));
 }
 
@@ -68,7 +72,7 @@ sub new_violation {
         ($score >= $self->{'_warn_level'} ? $self->get_severity() : $SEVERITY_LOWEST ));
 }
 
-sub nested_complexity {
+sub structure_score {
     my $self = shift;
     my ( $elem, $nesting ) = @_;
 
@@ -86,7 +90,7 @@ sub nested_complexity {
             if($self->nesting_increase($child->parent)) {
                 $complexity += $nesting;
             } else {
-                # missing compound statement / increment on postfix operators
+                # missing compound statement / increment on postfix operator_score
                 $complexity += $nesting + 1;
             }
         }
@@ -94,12 +98,12 @@ sub nested_complexity {
         elsif ( $child->isa('PPI::Statement::Break') && ! $self->is_return_statement($child)) {
             $complexity++;
         }
-        $complexity += $self->nested_complexity( $child, $nesting + $self->nesting_increase($child) );
+        $complexity += $self->structure_score( $child, $nesting + $self->nesting_increase($child) );
     }
     return $complexity;
 }
 
-sub operators {
+sub operator_score {
     my $self = shift;
     my ($sub) = @_;
     my $by_parent = {};
