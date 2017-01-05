@@ -1,6 +1,8 @@
 Revision history for PerlCritic extension Perl-Critic-CognitiveComplexity
 
 {{$NEXT}}
+
+0.03 2017-01-05T17:40:36Z
     - support complexity increase for boolean operators
 
 0.02 2017-01-03T16:11:41Z

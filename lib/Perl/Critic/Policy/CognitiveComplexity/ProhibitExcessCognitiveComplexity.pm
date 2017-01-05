@@ -8,7 +8,7 @@ use Perl::Critic::Utils qw{ :severities :classification :ppi };
 use Perl::Critic::Violation;
 use base 'Perl::Critic::Policy';
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 Scalar my $EXPL => q{Avoid code that is nested, and thus difficult to grasp.};
 Readonly my %BOOLEAN_OPS => map { $_ => 1 } qw( && || and or );
