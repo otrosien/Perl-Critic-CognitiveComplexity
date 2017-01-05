@@ -28,7 +28,10 @@
    "prereqs" : {
       "build" : {
          "requires" : {
+            "Devel::Cover" : "1.23",
+            "Devel::Cover::Report::Clover" : "1.01",
             "Module::Build::Tiny" : "0.039",
+            "TAP::Harness::Archive" : "0.18",
             "experimental" : "0"
          }
       },
@@ -55,9 +58,6 @@
       },
       "test" : {
          "requires" : {
-            "Devel::Cover" : "1.23",
-            "Devel::Cover::Report::Clover" : "1.01",
-            "TAP::Harness::Archive" : "0.18",
             "Test::More" : "0.98",
             "Test::Perl::Critic" : "1.03"
          }

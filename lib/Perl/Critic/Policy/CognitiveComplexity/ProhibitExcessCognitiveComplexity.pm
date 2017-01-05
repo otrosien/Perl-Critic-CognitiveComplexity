@@ -11,6 +11,7 @@ use base 'Perl::Critic::Policy';
 our $VERSION = '0.02';
 
 Scalar my $EXPL => q{Avoid code that is nested, and thus difficult to grasp.};
+Readonly my %BOOLEAN_OPS => map { $_ => 1 } qw( && || and or );
 
 sub supported_parameters {
     return ( {
@@ -51,6 +52,7 @@ sub violates {
     # start with complexity of 0
     my $block = $elem->find_first('PPI::Structure::Block');
     my $score = $self->nested_complexity($block , 0);
+    $score += $self->operators($block , 0);
 
     return if($score < $self->{'_info_level'});
     return ($self->new_violation($elem, $score));
@@ -95,6 +97,28 @@ sub nested_complexity {
         $complexity += $self->nested_complexity( $child, $nesting + $self->nesting_increase($child) );
     }
     return $complexity;
+}
+
+sub operators {
+    my $self = shift;
+    my ($sub) = @_;
+    my $by_parent = {};
+    my $elems = $sub->find('PPI::Token::Operator');
+    my $sum = 0;
+    if($elems) {
+        map { push @{$by_parent->{$_->parent}}, $_->content }
+            grep { exists $BOOLEAN_OPS{$_->content} } @$elems;
+        for my $parent (keys %{$by_parent}) {
+            my @ops = @{$by_parent->{$parent}};
+            OP: for(my $i = 0; $i < scalar @ops; ++$i) {
+                if($i > 0 && $ops[$i-1] eq $ops[$i]) {
+                    next OP;
+                }
+                $sum++;
+            }
+        }
+    }
+    return $sum;
 }
 
 sub is_return_statement {
