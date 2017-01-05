@@ -29,7 +29,7 @@ values as code metrics.
 
 # COPYRIGHT
 
-Copyright (C) 2017 Oliver Trosien.
+Copyright (C) 2017 Oliver Trosien
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

@@ -1,4 +1,4 @@
-requires 'perl', '5.008001';
+requires 'perl', '5.010001';
 requires 'Perl::Critic', '1.121';
 requires 'Readonly', '2.00';
 
@@ -13,4 +13,5 @@ on 'build' => sub {
     requires 'TAP::Harness::Archive', '0.18';
     requires 'Module::Build::Tiny', '0.039';
     requires 'experimental';
+    requires 'Minilla', '3.0.0';
 }

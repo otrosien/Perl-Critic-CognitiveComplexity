@@ -1,10 +1,10 @@
 {
    "abstract" : "Cognitive Complexity, Because Testability != Understandability",
    "author" : [
-      "Oliver Trosien."
+      "Oliver Trosien"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.0.7, CPAN::Meta::Converter version 2.150001",
+   "generated_by" : "Minilla/v3.0.8, CPAN::Meta::Converter version 2.150001",
    "license" : [
       "perl_5"
    ],
@@ -30,6 +30,7 @@
          "requires" : {
             "Devel::Cover" : "1.23",
             "Devel::Cover::Report::Clover" : "1.01",
+            "Minilla" : "v3.0.0",
             "Module::Build::Tiny" : "0.039",
             "TAP::Harness::Archive" : "0.18",
             "experimental" : "0"
@@ -53,7 +54,7 @@
          "requires" : {
             "Perl::Critic" : "1.121",
             "Readonly" : "2.00",
-            "perl" : "5.010"
+            "perl" : "5.010001"
          }
       },
       "test" : {
