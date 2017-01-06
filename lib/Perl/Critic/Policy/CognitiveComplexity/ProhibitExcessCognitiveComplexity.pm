@@ -207,7 +207,7 @@ to the final score - making a distinction among the categories of features being
 makes it easier to understand where nesting increments do and do not apply.
 
 
-=head1 SYNOPSIS
+=head1 EXAMPLES
 
 Some examples from the whitepaper, translated to perl.
 

@@ -7,11 +7,12 @@ Perl::Critic::CognitiveComplexity - Cognitive Complexity, Because Testability !=
 
 Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity is a rule that checks the
 cognitive complexity score of your subroutines. It is based on a new scoring algorithm introduced by
-SonarSource. See https://blog.sonarsource.com/cognitive-complexity-because-testability-understandability/
+SonarSource. See [SonarSource blog entry](https://blog.sonarsource.com/cognitive-complexity-because-testability-understandability/).
 
 ## Rules
 
-- [CognitiveComplexity::ProhibitExcessCognitiveComplexity](https://metacpan.org/pod/Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity) - Avoid code that is nested, and thus difficult to grasp.
+- [CognitiveComplexity::ProhibitExcessCognitiveComplexity](https://metacpan.org/pod/Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity) - Avoid code that is nested, and thus difficult to grasp. 
+Examples can be seen in the Policy POD.
 
 ## Configuration
 
