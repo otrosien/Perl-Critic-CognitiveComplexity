@@ -75,7 +75,7 @@
          "web" : "https://github.com/otrosien/Perl-Critic-CognitiveComplexity"
       }
    },
-   "version" : "0.03",
+   "version" : "0.5",
    "x_authority" : "cpan:OTROSIEN",
    "x_contributors" : [
       "Oliver Trosien <otrosien@epages.com>"
