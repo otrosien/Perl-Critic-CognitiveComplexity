@@ -191,16 +191,19 @@ and therefore of maintaining methods, classes, and applications.
 
 A Cognitive Complexity score is assessed according to three basic rules:
 
-1. Ignore structures that allow multiple statements to be readably shorthanded into one
-2. Increment (add one) for each break in the linear flow of the code
-3. Increment when flow-breaking structures are nested
+=over 1
+=item 1. Ignore structures that allow multiple statements to be readably shorthanded into one
+=item 2. Increment (add one) for each break in the linear flow of the code
+=item 3. Increment when flow-breaking structures are nested
+=back
 
 Additionally, a complexity score is made up of three different types of increments:
 
-A. Nesting - assessed for nesting control flow structures inside each other
-B. Structural - assessed on control flow structures that are subject to a nesting
-increment
-C. Fundamental - assessed on statements not subject to a nesting increment
+=over 1
+=item A. Nesting - assessed for nesting control flow structures inside each other
+=item B. Structural - assessed on control flow structures that are subject to a nesting increment
+=item C. Fundamental - assessed on statements not subject to a nesting increment
+=back
 
 While the type of an increment makes no difference in the math - each increment adds one
 to the final score - making a distinction among the categories of features being counted
@@ -230,9 +233,10 @@ C<given/when> increments cognitive complexity only once.
         default                    # +1
           { return "lots"; }
       }
-}                                  # =4                      =1
+  }                                # =4                      =1
 
-The deeper the nesting, the more control-structures add to the complexity.
+The deeper the nesting using C<for>, C<if> or similar, the more control-structures add
+to the complexity.
 
 C<goto>, C<next> and C<last> break the linear flow, which increments the
 complexity by one.
@@ -256,7 +260,7 @@ Anonymous functions do not increment the complexity, but the nesting.
   sub closure {
       sub { #                                                +0 (nesting=1)
           if(1) { #                                          +2 (nesting=1)
-              return;                                        +0 (nesting=2)
+              return; #                                      +0 (nesting=2)
           }
       }->();
   }                                                          =2
