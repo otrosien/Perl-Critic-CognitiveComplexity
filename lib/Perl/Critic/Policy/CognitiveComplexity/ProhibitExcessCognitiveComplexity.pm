@@ -86,6 +86,7 @@ sub _structure_score {
         if (   $child->isa('PPI::Structure::Given')
             || $child->isa('PPI::Structure::Condition')
             || $child->isa('PPI::Structure::For')
+            || $self->_is_foreach_statement($child)
             )
         {
             if($self->_nesting_increase($child->parent)) {
@@ -142,6 +143,13 @@ sub _is_return_statement {
     my $self = shift;
     my ($child) = @_;
     scalar $child->find( sub { $_[1]->content eq 'return' });
+}
+
+sub _is_foreach_statement {
+    my $self = shift;
+    my ($child) = @_;
+    my $foreach = $child->parent()->schild(0);
+    return($child->isa('PPI::Structure::List') && $foreach && $foreach->isa('PPI::Token::Word') && $foreach->content eq 'foreach');
 }
 
 sub _nesting_increase {
