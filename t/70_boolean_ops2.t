@@ -8,7 +8,9 @@ my $policy = 'Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitive
 my $code = <<'END_CODE';
 
 sub boolMethod2 {
-    if($a && $b || $c && $d) {}
+    if(
+    $a && $b && $c ||
+    $d && $e) {}
 }
 
 END_CODE

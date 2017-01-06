@@ -14,7 +14,7 @@ sub sumOfPrimes {
     OUT: for (my $i = 1; $i <= $max; ++$i) {
         for (my $j = 2; $j < $i; ++$j) {
             if ($i % $j == 0) {
-                 last OUT;
+                 next OUT;
             }
         }
         $total += $i;

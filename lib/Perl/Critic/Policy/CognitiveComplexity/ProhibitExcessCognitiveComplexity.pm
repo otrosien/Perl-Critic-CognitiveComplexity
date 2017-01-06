@@ -181,8 +181,94 @@ Cyclomatic Complexity was initially formulated as a measurement of the "testabil
 maintainability" of the control flow of a module. While it excels at measuring the former, its
 underlying mathematical model is unsatisfactory at producing a value that measures the
 latter. A white paper from SonarSource* describes a new metric that breaks from the use of mathematical
-models to evaluate code in order to remedy Cyclomatic Complexity’s shortcomings and
+models to evaluate code in order to remedy Cyclomatic Complexity's shortcomings and
 produce a measurement that more accurately reflects the relative difficulty of understanding,
 and therefore of maintaining methods, classes, and applications.
 
 * https://blog.sonarsource.com/cognitive-complexity-because-testability-understandability/
+
+=head2 Basic criteria and methodology
+
+A Cognitive Complexity score is assessed according to three basic rules:
+
+1. Ignore structures that allow multiple statements to be readably shorthanded into one
+2. Increment (add one) for each break in the linear flow of the code
+3. Increment when flow-breaking structures are nested
+
+Additionally, a complexity score is made up of three different types of increments:
+
+A. Nesting - assessed for nesting control flow structures inside each other
+B. Structural - assessed on control flow structures that are subject to a nesting
+increment
+C. Fundamental - assessed on statements not subject to a nesting increment
+
+While the type of an increment makes no difference in the math - each increment adds one
+to the final score - making a distinction among the categories of features being counted
+makes it easier to understand where nesting increments do and do not apply.
+
+
+=head1 SYNOPSIS
+
+Some examples from the whitepaper, translated to perl.
+
+  #                                Cyclomatic Complexity    Cognitive Complexity
+
+Most simple case: subs themselves do not increment the cognitive complexity.
+
+  sub a {                          # +1
+  }                                # =1                      =0
+
+C<given/when> increments cognitive complexity only once.
+
+  sub getWords {                   # +1
+      my ($number) = @_;
+      given ($number) {            #                         +1
+        when (1)                   # +1
+          { return "one"; }
+        when (2)                   # +1
+          { return "a couple"; }
+        default                    # +1
+          { return "lots"; }
+      }
+}                                  # =4                      =1
+
+The deeper the nesting, the more control-structures add to the complexity.
+
+C<goto>, C<next> and C<last> break the linear flow, which increments the
+complexity by one.
+
+  sub sumOfPrimes {
+    my ($max) = @_;
+    my $total = 0;
+    OUT: for (my $i = 1; $i <= $max; ++$i) { #               +1
+        for (my $j = 2; $j < $i; ++$j) { #                   +2
+            if ($i % $j == 0) { #                            +3
+                 next OUT; #                                 +1
+            }
+        }
+        $total += $i;
+    }
+    return $total;
+  } #                                                        =7
+
+Anonymous functions do not increment the complexity, but the nesting.
+
+  sub closure {
+      sub { #                                                +0 (nesting=1)
+          if(1) { #                                          +2 (nesting=1)
+              return;                                        +0 (nesting=2)
+          }
+      }->();
+  }                                                          =2
+
+Cognitive Complexity does not increment for each logical operator.
+Instead, it assesses a fundamental increment for each sequence of logical operators.
+
+  sub boolMethod2 {
+      if( #                                                  +1
+      $a && $b && $c #                                       +1
+      || #                                                   +1
+      $d && $e) #                                            +1
+      {
+  } #                                                        =4
+
