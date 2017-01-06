@@ -53,16 +53,17 @@ sub violates {
     my $score = 0;
     my $block = $elem->find_first('PPI::Structure::Block');
 
-    $score += $self->structure_score($block , 0);
-    $score += $self->operator_score($block);
+    $score += $self->_structure_score($block , 0);
+    $score += $self->_operator_score($block);
+    $score += $self->_recursion_score($block, $name);
 
     # return no violation
     return if($score < $self->{'_info_level'});
     # return violation
-    return ($self->new_violation($elem, $score));
+    return ($self->_new_violation($elem, $score));
 }
 
-sub new_violation {
+sub _new_violation {
     my $self = shift;
     my ($elem, $score) = @_;
     my $name = $elem->name();
@@ -72,7 +73,7 @@ sub new_violation {
         ($score >= $self->{'_warn_level'} ? $self->get_severity() : $SEVERITY_LOWEST ));
 }
 
-sub structure_score {
+sub _structure_score {
     my $self = shift;
     my ( $elem, $nesting ) = @_;
 
@@ -87,7 +88,7 @@ sub structure_score {
             || $child->isa('PPI::Structure::For')
             )
         {
-            if($self->nesting_increase($child->parent)) {
+            if($self->_nesting_increase($child->parent)) {
                 $complexity += $nesting;
             } else {
                 # missing compound statement / increment on postfix operator_score
@@ -95,15 +96,15 @@ sub structure_score {
             }
         }
         # 'return' is a break-statement, but does not count in terms of cognitive complexity.
-        elsif ( $child->isa('PPI::Statement::Break') && ! $self->is_return_statement($child)) {
+        elsif ( $child->isa('PPI::Statement::Break') && ! $self->_is_return_statement($child)) {
             $complexity++;
         }
-        $complexity += $self->structure_score( $child, $nesting + $self->nesting_increase($child) );
+        $complexity += $self->_structure_score( $child, $nesting + $self->_nesting_increase($child) );
     }
     return $complexity;
 }
 
-sub operator_score {
+sub _operator_score {
     my $self = shift;
     my ($sub) = @_;
     my $by_parent = {};
@@ -125,13 +126,25 @@ sub operator_score {
     return $sum;
 }
 
-sub is_return_statement {
+sub _recursion_score {
+    my $self = shift;
+    my ($sub, $method_name) = @_;
+    if($sub->find(sub {
+        # TODO: check for false positives..
+        $_[1]->isa( 'PPI::Token::Word' ) && $_[1]->content eq $method_name
+    })) {
+        return 1;
+    }
+    return 0;
+}
+
+sub _is_return_statement {
     my $self = shift;
     my ($child) = @_;
     scalar $child->find( sub { $_[1]->content eq 'return' });
 }
 
-sub nesting_increase {
+sub _nesting_increase {
     my $self = shift;
     my ($child) = @_;
 
