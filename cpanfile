@@ -10,6 +10,7 @@ on 'test' => sub {
 on 'build' => sub {
     requires 'Devel::Cover', '1.23';
     requires 'Devel::Cover::Report::Clover', '1.01';
+    requires 'Perl::Critic::CognitiveComplexity', '0.5';
     requires 'TAP::Harness::Archive', '0.18';
     requires 'experimental', '0.016';
     requires 'Minilla', '3.0.0';
