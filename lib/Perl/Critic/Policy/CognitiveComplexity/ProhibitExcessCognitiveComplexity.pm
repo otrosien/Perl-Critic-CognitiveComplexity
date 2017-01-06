@@ -166,3 +166,23 @@ sub _nesting_increase {
 }
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Perl::Critic::Policy::CognitiveComplexity::ProhibitExcessCognitiveComplexity - Avoid code that is nested, and thus difficult to grasp.
+
+=head1 DESCRIPTION
+
+Cyclomatic Complexity was initially formulated as a measurement of the "testability and
+maintainability" of the control flow of a module. While it excels at measuring the former, its
+underlying mathematical model is unsatisfactory at producing a value that measures the
+latter. A white paper from SonarSource* describes a new metric that breaks from the use of mathematical
+models to evaluate code in order to remedy Cyclomatic Complexity’s shortcomings and
+produce a measurement that more accurately reflects the relative difficulty of understanding,
+and therefore of maintaining methods, classes, and applications.
+
+* https://blog.sonarsource.com/cognitive-complexity-because-testability-understandability/

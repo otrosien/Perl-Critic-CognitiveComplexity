@@ -2,7 +2,7 @@
 
 set -e # Exit with nonzero exit code if anything fails
 
-prove -j 3 -l -a testReport.tgz
+prove -l -a testReport.tgz
 cover -test -report clover
 sed -i 's#blib/lib#lib#' cover_db/clover.xml
 perlcritic --profile $TRAVIS_BUILD_DIR/.perlcriticrc --quiet --verbose "%f~|~%s~|~%l~|~%c~|~%m~|~%e~|~%p~||~%n" lib t > perlcritic_report.txt || true
