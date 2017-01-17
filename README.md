@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/otrosien/Perl-Critic-CognitiveComplexity.svg?branch=master)](https://travis-ci.org/otrosien/Perl-Critic-CognitiveComplexity)
+[![Build Status](https://travis-ci.org/otrosien/Perl-Critic-CognitiveComplexity.svg?branch=master)](https://travis-ci.org/otrosien/Perl-Critic-CognitiveComplexity) [![MetaCPAN Release](https://badge.fury.io/pl/Perl-Critic-CognitiveComplexity.svg)](https://metacpan.org/release/Perl-Critic-CognitiveComplexity)
 # NAME
 
 Perl::Critic::CognitiveComplexity - Cognitive Complexity, Because Testability != Understandability
