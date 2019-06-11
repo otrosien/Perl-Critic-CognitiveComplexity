@@ -24,5 +24,9 @@ perl:
   - "5.14"
   - "5.12"
   - "5.10"
+
+env:
+  - AUTHOR_TEST=1
+
 after_success:
   - 'if [ "$PERLBREW_PERL" == "5.24" ] ; then JAVA_HOME=$JAVA_HOME scripts/sonar-report.sh ; fi'

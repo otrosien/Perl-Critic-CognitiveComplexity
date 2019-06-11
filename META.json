@@ -75,6 +75,7 @@
    "version" : "0.5",
    "x_authority" : "cpan:OTROSIEN",
    "x_contributors" : [
+      "Oliver Trosien <oliver.trosien@zalando.de>",
       "Oliver Trosien <otrosien@epages.com>"
    ],
    "x_serialization_backend" : "JSON::PP version 2.27300_01",
