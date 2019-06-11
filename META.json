@@ -4,7 +4,7 @@
       "Oliver Trosien"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.0.8, CPAN::Meta::Converter version 2.150001",
+   "generated_by" : "Minilla/v3.1.4, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -26,16 +26,6 @@
       ]
    },
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "Devel::Cover" : "1.23",
-            "Devel::Cover::Report::Clover" : "1.01",
-            "Minilla" : "v3.0.0",
-            "Perl::Critic::CognitiveComplexity" : "0.5",
-            "TAP::Harness::Archive" : "0.18",
-            "experimental" : "0.016"
-         }
-      },
       "configure" : {
          "requires" : {
             "Module::Build::Tiny" : "0.035"
@@ -59,8 +49,14 @@
       },
       "test" : {
          "requires" : {
+            "Devel::Cover" : "1.23",
+            "Devel::Cover::Report::Clover" : "1.01",
+            "Minilla" : "v3.0.0",
+            "Perl::Critic::CognitiveComplexity" : "0.5",
+            "TAP::Harness::Archive" : "0.18",
             "Test::More" : "1.001014",
-            "Test::Perl::Critic" : "1.03"
+            "Test::Perl::Critic" : "1.03",
+            "experimental" : "0.016"
          }
       }
    },
@@ -80,5 +76,7 @@
    "x_authority" : "cpan:OTROSIEN",
    "x_contributors" : [
       "Oliver Trosien <otrosien@epages.com>"
-   ]
+   ],
+   "x_serialization_backend" : "JSON::PP version 2.27300_01",
+   "x_static_install" : 1
 }
