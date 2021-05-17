@@ -53,9 +53,11 @@ sub violates {
     my $score = 0;
     my $block = $elem->find_first('PPI::Structure::Block');
 
-    $score += $self->_structure_score($block , 0);
-    $score += $self->_operator_score($block);
-    $score += $self->_recursion_score($block, $name);
+    if ($block) {
+        $score += $self->_structure_score($block, 0);
+        $score += $self->_operator_score($block);
+        $score += $self->_recursion_score($block, $name);
+    }
 
     # return no violation
     return if($score < $self->{'_info_level'});
